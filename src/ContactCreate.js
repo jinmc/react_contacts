@@ -39,6 +39,8 @@ export default class ContactCreate extends React.Component {
       name: '',
       phone: ''
     })
+
+    this.nameInput.focus();
   }
 
   handleKeyPress(e) {
@@ -59,6 +61,7 @@ export default class ContactCreate extends React.Component {
             value={this.state.name}
             onChange={this.handleChange}
             onKeyPress={this.handleKey}
+            ref={(ref) => {this.nameInput = ref}}
           />
           <input
             type="text"

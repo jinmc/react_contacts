@@ -31,6 +31,21 @@ export default class Contact extends React.Component {
     this.handleCreate = this.handleCreate.bind(this)
   }
 
+  componentWillMount() {
+    const contactData = localStorage.contactData;
+    if (contactData) {
+      this.setState({
+        contactData: JSON.parse(contactData)
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (JSON.stringify(prevState.contactData) != JSON.stringify(this.state.contactData)) {
+      localStorage.contactData = JSON.stringify(this.state.contactData);
+    }
+  }
+
   handleClick(key) {
     this.setState({
       selectedKey: key
@@ -68,7 +83,7 @@ export default class Contact extends React.Component {
     newData[this.state.selectedKey].name = name;
     newData[this.state.selectedKey].phone = phone;
     this.setState({contactData: newData});
-    
+
     // this.setState((prevState) => ({
     //   contactData: {
     //     ...prevState.contactData,
