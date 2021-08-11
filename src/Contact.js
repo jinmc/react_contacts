@@ -50,8 +50,16 @@ export default class Contact extends React.Component {
     });
   }
 
-  handleRemove(e) {
-
+  handleRemove() {
+    // console.log("call handleremove")
+    if (this.state.selectedKey < 0) {
+      return ;
+    }
+    // console.log(`selectedkey : ${this.state.selectedKey}`)
+    this.setState((prevState) =>
+      ({
+        contactData: prevState.contactData.filter((_, i) => i !== this.state.selectedKey)
+      }));
   }
 
   handleEdit(e) {
@@ -89,6 +97,7 @@ export default class Contact extends React.Component {
         <ContactDetails
           isSelected={this.state.selectedKey != -1}
           contact={this.state.contactData[this.state.selectedKey]}
+          onRemove={this.handleRemove}
           />
           <ContactCreate onCreate={this.handleCreate}/>
       </div>

@@ -69,3 +69,11 @@ export default class ContactCreate extends React.Component {
   }
 
 }
+
+ContactCreate.defaultProps = {
+  onCreate: () => {console.error('onCreate not defined');}
+}
+
+// ContactCreate.propTypes = {
+//   onCreate: React.PropTypes.func
+// };
