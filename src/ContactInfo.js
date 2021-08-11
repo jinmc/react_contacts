@@ -4,8 +4,8 @@ export default class ContactInfo extends React.Component {
 
     render(){
       return (
-        <div>
-        {this.props.contact.name} {this.props.contact.phone}
+        <div onClick={this.props.onClick}>
+          {this.props.contact.name} {this.props.contact.phone}
         </div>
       );
     }
