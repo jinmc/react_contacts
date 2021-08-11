@@ -16,6 +16,12 @@ export default class ContactCreate extends React.Component {
   // this.handleClick = this.handleClick.bind(this);
   // this.handleKeyPress = this.handleKeyPress.bind(this);
 
+  handleKeyPress(e) {
+    if (e.charCode === 13) {
+      this.handleClick();
+    }
+  }
+
   handleChange(e) {
     let nextState = {};
     nextState[e.target.name] = e.target.value;
@@ -60,7 +66,7 @@ export default class ContactCreate extends React.Component {
             placeholder="phone"
             value={this.state.phone}
             onChange={this.handleChange}
-            onKeyPress={this.handleKey}
+            onKeyPress={this.handleKeyPress}
           />
         </p>
         <button onClick={this.handleClick}>create</button>
