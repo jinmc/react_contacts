@@ -58,12 +58,24 @@ export default class Contact extends React.Component {
     // console.log(`selectedkey : ${this.state.selectedKey}`)
     this.setState((prevState) =>
       ({
-        contactData: prevState.contactData.filter((_, i) => i !== this.state.selectedKey)
+        contactData: prevState.contactData.filter((_, i) => i !== this.state.selectedKey),
+        selectedKey: -1
       }));
   }
 
-  handleEdit(e) {
-
+  handleEdit(name, phone) {
+    const newData = [...this.state.contactData];
+    newData[this.state.selectedKey].name = name;
+    newData[this.state.selectedKey].phone = phone;
+    this.setState({contactData: newData});
+    
+    // this.setState((prevState) => ({
+    //   contactData: {
+    //     ...prevState.contactData,
+    //     [prevState.contactData[this.state.selectedKey].name]: name,
+    //     [prevState.contactData[this.state.selectedKey].phone]: phone
+    //   }
+    // }));
   }
 
   render(){
@@ -98,6 +110,7 @@ export default class Contact extends React.Component {
           isSelected={this.state.selectedKey != -1}
           contact={this.state.contactData[this.state.selectedKey]}
           onRemove={this.handleRemove}
+          onEdit={this.handleEdit}
           />
           <ContactCreate onCreate={this.handleCreate}/>
       </div>
