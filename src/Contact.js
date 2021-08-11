@@ -1,6 +1,7 @@
 import React from 'react';
 import ContactInfo from './ContactInfo';
 import ContactDetails from './ContactDetails'
+import ContactCreate from './ContactCreate'
 
 export default class Contact extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ export default class Contact extends React.Component {
 
     this.handleChange = this.handleChange.bind(this)
     this.handleClick = this.handleClick.bind(this)
+    this.handleEdit = this.handleEdit.bind(this)
+    this.handleRemove = this.handleRemove.bind(this)
+    this.handleCreate = this.handleCreate.bind(this)
   }
 
   handleClick(key) {
@@ -38,6 +42,20 @@ export default class Contact extends React.Component {
     this.setState({
       keyword: e.target.value
     })
+  }
+
+  handleCreate(contact) {
+    this.setState({
+      contactData: [...this.state.contactData, contact]
+    });
+  }
+
+  handleRemove(e) {
+
+  }
+
+  handleEdit(e) {
+
   }
 
   render(){
@@ -72,6 +90,7 @@ export default class Contact extends React.Component {
           isSelected={this.state.selectedKey != -1}
           contact={this.state.contactData[this.state.selectedKey]}
           />
+          <ContactCreate onCreate={this.handleCreate}/>
       </div>
     );
   }
